@@ -214,10 +214,12 @@ public class Model {
      */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
+        System.out.println(x);
     }
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        System.out.println(side);
     }
 
     /**
