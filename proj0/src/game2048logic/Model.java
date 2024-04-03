@@ -159,15 +159,15 @@ public class Model {
                     return true;
                 }
                 int targetTileValue = targetTile.value();
-                if(x > 0) {
-                   Tile leftTile = board.tile(x - 1, y);
-                   if(leftTile != null && leftTile.value() == targetTileValue) {
-                       return true;
-                   }
+                if (x > 0) {
+                    Tile leftTile = board.tile(x - 1, y);
+                    if (leftTile != null && leftTile.value() == targetTileValue) {
+                        return true;
+                    }
                 }
                 if (y > 0) {
                     Tile topTile = board.tile(x, y - 1);
-                    if(topTile != null &&  topTile.value() == targetTileValue) {
+                    if (topTile != null && topTile.value() == targetTileValue) {
                         return true;
                     }
                 }
@@ -194,7 +194,15 @@ public class Model {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
         int targetY = y;
-
+        int size = board.size();
+        while (targetY < size - 1) {
+            Tile targetTile = board.tile(x, targetY + 1);
+            if (targetTile != null && targetTile.value() != myValue) {
+                break;
+            }
+            targetY += 1;
+        }
+        board.move(x, targetY, currTile);
         // TODO: Tasks 5, 6, and 10. Fill in this function.
     }
 
