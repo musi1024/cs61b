@@ -197,8 +197,12 @@ public class Model {
         int size = board.size();
         while (targetY < size - 1) {
             Tile targetTile = board.tile(x, targetY + 1);
-            if (targetTile != null && targetTile.value() != myValue) {
-                break;
+            if (targetTile != null) {
+                if(targetTile.value() != myValue) {
+                    break;
+                } else if (targetTile.wasMerged()){
+                    break;
+                }
             }
             targetY += 1;
         }
