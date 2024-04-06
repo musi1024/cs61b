@@ -195,22 +195,27 @@ public class Model {
         if (currTile == null) {
             return;
         }
-        int myValue = currTile.value();
+        int currValue = currTile.value();
         int targetY = y;
-        int size = board.size();
-        while (targetY < size - 1) {
+        while (targetY < board.size() - 1) {
             Tile targetTile = board.tile(x, targetY + 1);
             if (targetTile != null) {
-                if(targetTile.value() != myValue) {
-                    break;
-                } else if (targetTile.wasMerged()){
+                int targetValue = targetTile.value();
+                if (targetValue != currValue) {
                     break;
                 }
+                if (targetTile.wasMerged()) {
+                    break;
+                }
+                score = score + 2 * currValue;
+                targetY++;
+                break;
             }
-            targetY += 1;
+            targetY++;
         }
-        board.move(x, targetY, currTile);
-        // TODO: Tasks 5, 6, and 10. Fill in this function.
+        if (targetY > y) {
+            board.move(x, targetY, currTile);
+        }
     }
 
     /**
@@ -220,9 +225,9 @@ public class Model {
      * so we are tilting the tiles in this column up.
      */
     public void tiltColumn(int x) {
-        int target = board.size() - 1;
-        while (target > 0) {
-            moveTileUpAsFarAsPossible(x, target - 1);
+        int target = board.size() - 2;
+        while (target >= 0) {
+            moveTileUpAsFarAsPossible(x, target);
             target--;
         }
     }
