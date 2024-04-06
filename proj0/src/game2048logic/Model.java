@@ -220,16 +220,21 @@ public class Model {
      * so we are tilting the tiles in this column up.
      */
     public void tiltColumn(int x) {
-        int size =  board.size();
-        while (size > 0) {
-            moveTileUpAsFarAsPossible(x, size - 1);
-            size--;
+        int target = board.size() - 1;
+        while (target > 0) {
+            moveTileUpAsFarAsPossible(x, target - 1);
+            target--;
         }
     }
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
         System.out.println(side);
+        int target = 0;
+        while (target < board.size()) {
+            tiltColumn(target);
+            target++;
+        }
     }
 
     /**
