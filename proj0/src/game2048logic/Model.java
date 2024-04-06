@@ -192,6 +192,9 @@ public class Model {
      */
     public void moveTileUpAsFarAsPossible(int x, int y) {
         Tile currTile = board.tile(x, y);
+        if (currTile == null) {
+            return;
+        }
         int myValue = currTile.value();
         int targetY = y;
         int size = board.size();
@@ -217,8 +220,11 @@ public class Model {
      * so we are tilting the tiles in this column up.
      */
     public void tiltColumn(int x) {
-        // TODO: Task 7. Fill in this function.
-        System.out.println(x);
+        int size =  board.size();
+        while (size > 0) {
+            moveTileUpAsFarAsPossible(x, size - 1);
+            size--;
+        }
     }
 
     public void tilt(Side side) {
