@@ -228,13 +228,13 @@ public class Model {
     }
 
     public void tilt(Side side) {
-        // TODO: Tasks 8 and 9. Fill in this function.
-        System.out.println(side);
+        board.setViewingPerspective(side);
         int target = 0;
         while (target < board.size()) {
             tiltColumn(target);
             target++;
         }
+        board.setViewingPerspective(Side.NORTH);
     }
 
     /**
