@@ -20,5 +20,24 @@ public class MaxArrayDeque61BTest {
         mad.addFirst("2");
         mad.addFirst("fury road");
         assertThat(mad.max()).isEqualTo("fury road");
+
+    }
+
+    @Test
+    public void naturalOrderTest() {
+        MaxArrayDeque61B<Integer> mad = new MaxArrayDeque61B<Integer>(Comparator.naturalOrder());
+        mad.addFirst(1);
+        mad.addFirst(99);
+        mad.addFirst(54);
+        assertThat(mad.max()).isEqualTo(99);
+    }
+
+    @Test
+    public void testMaxWithComparator() {
+        MaxArrayDeque61B<Integer> mad = new MaxArrayDeque61B<Integer>(null);
+        mad.addFirst(1);
+        mad.addFirst(99);
+        mad.addFirst(54);
+        assertThat(mad.max(Comparator.naturalOrder())).isEqualTo(99);
     }
 }
